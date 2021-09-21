@@ -1,0 +1,9 @@
+version: 2.1
+
+description: >
+  Run an intuit/auto release process through the `shipit` script
+
+# This information will be displayed in the orb registry and is not mandatory.
+display:
+  home_url: "https://intuit.github.io/auto/"
+  source_url: "https://github.com/Sy1v4in/auto-orb"

@@ -1,0 +1,10 @@
+description: >
+  How to use the "shipit" job in a release workflow.
+usage:
+  version: 2.1
+  orbs:
+    auto-orb: sy1v4in/auto-orb@1.2.3
+  workflows:
+    release:
+      jobs:
+        - auto-orb/shipit

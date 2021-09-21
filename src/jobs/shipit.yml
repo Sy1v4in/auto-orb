@@ -1,0 +1,21 @@
+description: >
+  Install the auto script and run it through the `yarn shipit` command
+
+executor: default
+
+parameters:
+  auto_version:
+    type: string
+    default: "v10.31.0"
+    description: "The intuit/auto version"
+steps:
+  - checkout
+  - run:
+      name: install auto
+      command: |
+        mkdir -p ~/bin/ && \
+        curl -vkL -o - https://github.com/intuit/auto/releases/download/<<parameters.auto_version>>/auto-linux.gz | gunzip > ~/bin/auto && \
+        chmod a+x ~/bin/auto
+  - run:
+      name: shipit
+      command: export PATH=$HOME/bin:$PATH && yarn shipit

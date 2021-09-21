@@ -1,0 +1,35 @@
+version: 2.1
+
+orbs:
+  # Replace this with your own!
+  orb-tools: circleci/orb-tools@10.0
+
+jobs:
+  pack_and_publish:
+    jobs:
+      - orb-tools/lint
+
+      # Pack the orb into a single file and validate the result.
+      - orb-tools/pack:
+          filters:
+            tags:
+              only: /.*/
+
+      - orb-tools/publish-dev:
+          orb-name: sy1v4in/auto-orb
+          requires:
+            - orb-tools/lint
+            - orb-tools/pack
+
+      # release with a semver git tag
+      - orb-tools/publish:
+          attach-workspace: true
+          orb-ref: sy1v4in/auto-orb@${CIRCLE_TAG}
+          requires:
+            - orb-tools/lint
+            - orb-tools/pack
+          filters:
+            tags:
+              only: /[0-9]+\.[0-9]+\.[0-9]+/
+            branches:
+              ignore: /.*/
