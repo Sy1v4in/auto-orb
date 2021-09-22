@@ -3,7 +3,7 @@ description: >
 usage:
   version: 2.1
   orbs:
-    auto-orb: sy1v4in/auto-orb@1.2.3
+    auto-orb: sfraisse/auto-orb@1.2.3
   workflows:
     release:
       jobs:
